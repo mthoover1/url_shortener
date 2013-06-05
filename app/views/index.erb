@@ -1,23 +1,17 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <h1>MiniscURL</h1>
+  <br>
+  <% if @errors %>
+    <%= erb :_errors, locals: {errors: @errors} %>
+  <% end %>
+  <% if @short %>
+  <label for='short_url'>Miniscule URL:</label>
+    <input type='text' id='short_url' value="<%=@short%>">  
+  <%end %>
+  <br>
+  <form action='/urls' method='post'>
+    <label for='orginal_url'>Enter URL:</label>
+    <input type='text' id='original_url' name='url[original_url]'>
+    <input type='submit' value='Minisculize' class='submit_button'>
+  </form>
 </div>
